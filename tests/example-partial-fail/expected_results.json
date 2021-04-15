@@ -1,5 +1,5 @@
 {
   "version": 1,
   "status": "fail",
-  "output": "TODO: replace with correct output"
+  "output": "WARNING: leap is a single segment namespace at line 1 /solution/src/leap.cljs\nWARNING: leap-test is a single segment namespace at line 1 /solution/test/leap_test.cljs\n\nTesting leap-test\n\n\u001b[01;31m\u001b[KFAIL in (year-divisible-by-400) (/solution/test/leap_test.cljs:31:9)\u001b[m\u001b[K\nTesting, year divisible by four hundred...\nexpected: (leap/leap-year? 2800)\n  actual: (not (leap/leap-year? 2800))\n\n\u001b[01;31m\u001b[KFAIL in (year-divisible-by-400-but-not-125) (/solution/test/leap_test.cljs:35:9)\u001b[m\u001b[K\nTesting, year divisible by four hundred but not one hundred twenty five...\nexpected: (leap/leap-year? 3200)\n  actual: (not (leap/leap-year? 3200))\n\nRan 9 tests containing 9 assertions.\n2 failures, 0 errors."
 }
