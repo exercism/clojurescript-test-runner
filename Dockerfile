@@ -1,8 +1,17 @@
-FROM alpine:3.10
+FROM clojure:openjdk-17-tools-deps-1.10.3.822-slim-buster
 
-# TODO: install packages required to run the tests
-# RUN apk add --no-cache jq coreutils
+RUN apt-get update && \
+    apt-get install -y curl jq && \ 
+    curl -fsSL https://deb.nodesource.com/setup_15.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get purge --auto-remove && \
+    apt-get clean
 
 WORKDIR /opt/test-runner
+
+COPY deps.edn .
+RUN clojure -Aoutdated
+
 COPY . .
 ENTRYPOINT ["/opt/test-runner/bin/run.sh"]
