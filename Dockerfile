@@ -8,6 +8,8 @@ RUN apt-get update && \
     apt-get purge --auto-remove && \
     apt-get clean
 
+RUN npm install -g nbb
+
 WORKDIR /opt/test-runner
 
 COPY deps.edn .
