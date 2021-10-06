@@ -1,5 +1,5 @@
 {
   "version": 1,
   "status": "fail",
-  "message": "Message:  Could not find namespace: leap"
+  "message": "Message:  Could not find namespace: example-empty-file\nMessage:  Could not find namespace: example-empty-file"
 }
