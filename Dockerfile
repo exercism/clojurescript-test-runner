@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get purge --auto-remove && \
     apt-get clean
 
-RUN npm install -g nbb
+RUN npm install -g nbb@0.0.92
 
 WORKDIR /opt/test-runner
 

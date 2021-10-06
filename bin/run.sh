@@ -33,24 +33,24 @@ echo "${slug}: testing..."
 
 pushd "${input_dir}" > /dev/null
 
-script="$(cat src/leap.cljs)$(cat test/leap_test.cljs | sed 's/cljs.test/clojure.test/')(t/run-tests 'leap-test)"
+script="$(cat src/leap.cljs)$(cat test/leap_test.cljs | sed 's/cljs.test/clojure.test/') (defmethod t/report [:cljs.test/default :end-run-tests] [{:keys [fail error]}] (js/process.exit (if (pos? (+ fail error)) 1 0))) (t/run-tests 'leap-test)"
 
 # Run the tests for the provided implementation file and redirect stdout and
 # stderr to capture it
 test_output=$(nbb -e "${script}" 2>&1)
 exit_code=$?
+error=$(echo "${test_output}" | grep -c -E '\-\- Error \-\-')
 
 popd > /dev/null
 
 # Write the results.json file based on the exit code of the command that was
 # just executed that tested the implementation file
-if [ $exit_code -eq 0 ]; then
+if [ $exit_code -eq 0 ] && [ $error -eq 0 ]; then
     jq -n '{version: 1, status: "pass"}' > ${results_file}
 else
-    # Manually add colors to the output to help scanning the output for errors
-    colorized_test_output=$(echo "${test_output}" | GREP_COLOR='01;31' grep --color=always -E -e '^FAIL.*$|$')
+    sanitized_test_output=$(echo "${test_output}" | sed -E -e 's/-+ Error -+//g' -e '/./,$!d' -e '/Phase: /q;p')
 
-    jq -n --arg output "${colorized_test_output}" '{version: 1, status: "fail", message: $output}' > ${results_file}
+    jq -n --arg output "${sanitized_test_output}" '{version: 1, status: "fail", message: $output}' > ${results_file}
 fi
 
 echo "${slug}: done"
