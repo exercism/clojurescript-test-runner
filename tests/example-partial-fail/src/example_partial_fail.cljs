@@ -1,4 +1,4 @@
-(ns leap)
+(ns example-partial-fail)
 
 (defn leap-year?
   "Checks, if its a leap year."
