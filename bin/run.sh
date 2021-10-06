@@ -33,11 +33,15 @@ echo "${slug}: testing..."
 
 pushd "${input_dir}" > /dev/null
 
-script="$(cat src/leap.cljs)$(cat test/leap_test.cljs | sed 's/cljs.test/clojure.test/') (defmethod t/report [:cljs.test/default :end-run-tests] [{:keys [fail error]}] (js/process.exit (if (pos? (+ fail error)) 1 0))) (t/run-tests 'leap-test)"
+source_script=$(cat src/leap.cljs)
+test_script=$(cat test/leap_test.cljs | sed 's/cljs.test/clojure.test/')
+exit_on_failure_script="(defmethod t/report [:cljs.test/default :end-run-tests] [{:keys [fail error]}] (js/process.exit (if (pos? (+ fail error)) 1 0)))"
+run_tests_script="(t/run-tests 'leap-test)"
+test_script="${source_script} ${test_script} ${exit_on_failure_script} ${run_tests_script}"
 
 # Run the tests for the provided implementation file and redirect stdout and
 # stderr to capture it
-test_output=$(nbb -e "${script}" 2>&1)
+test_output=$(nbb -e "${test_script}" 2>&1)
 exit_code=$?
 error=$(echo "${test_output}" | grep -c -E '\-\- Error \-\-')
 
