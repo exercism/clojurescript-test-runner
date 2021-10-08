@@ -1,5 +1,5 @@
 {
   "version": 1,
   "status": "fail",
-  "message": "Message:  Could not resolve symbol: leap\nMessage:  Could not resolve symbol: leap\nLocation: 1:14\nLocation: 1:14\nPhase:    analysis"
+  "message": "Message:  Could not resolve symbol: leap\nnLocation: 1:14\nPhase:    analysis"
 }
