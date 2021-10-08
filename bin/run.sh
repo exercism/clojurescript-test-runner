@@ -53,6 +53,7 @@ popd > /dev/null
 if [ $exit_code -eq 0 ] && [ $error -eq 0 ]; then
     jq -n '{version: 1, status: "pass"}' > ${results_file}
 else
+    # Removed /q;p and replaced with /q
     sanitized_test_output=$(echo "${test_output}" | sed -E -e 's/-+ Error -+//g' -e '/./,$!d' -e '/Phase: /q')
 
     jq -n --arg output "${sanitized_test_output}" '{version: 1, status: "fail", message: $output}' > ${results_file}
