@@ -14,13 +14,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # 2.3.5
+        uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@94ab11c41e45d028884a99163086648e898eed25 # 1.6.0
+        uses: docker/setup-buildx-action@94ab11c41e45d028884a99163086648e898eed25
 
       - name: Cache Docker layers
-        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # 2.1.6
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229 # 2.7.0
+        uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229
         with:
           context: .
           file: ./Dockerfile
