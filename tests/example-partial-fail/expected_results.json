@@ -1,5 +1,5 @@
 {
   "version": 1,
   "status": "fail",
-  "message": "Testing example-partial-fail-test\nTesting example-partial-fail-test\n\n\nFAIL in (year-divisible-by-400) (:37)\nFAIL in (year-divisible-by-400) (:37)\nexpected: (example-partial-fail/leap-year? 2800)\nexpected: (example-partial-fail/leap-year? 2800)\n  actual: (not (example-partial-fail/leap-year? 2800))\n  actual: (not (example-partial-fail/leap-year? 2800))\n\n\nFAIL in (year-divisible-by-400-but-not-125) (:41)\nFAIL in (year-divisible-by-400-but-not-125) (:41)\nexpected: (example-partial-fail/leap-year? 3200)\nexpected: (example-partial-fail/leap-year? 3200)\n  actual: (not (example-partial-fail/leap-year? 3200))\n  actual: (not (example-partial-fail/leap-year? 3200))\n\n\nRan 9 tests containing 9 assertions.\nRan 9 tests containing 9 assertions.\n2 failures, 0 errors.\n2 failures, 0 errors."
+  "message": "Testing example-partial-fail-test\n\nFAIL in (year-divisible-by-400) (:37)\nexpected: (example-partial-fail/leap-year? 2800)\n  actual: (not (example-partial-fail/leap-year? 2800))\n\nFAIL in (year-divisible-by-400-but-not-125) (:41)\nexpected: (example-partial-fail/leap-year? 3200)\n  actual: (not (example-partial-fail/leap-year? 3200))\n\nRan 9 tests containing 9 assertions.\n2 failures, 0 errors."
 }
